@@ -40,7 +40,7 @@
 */
 
 SELECT 
-  	DISTINCT client_id 
+    DISTINCT client_id 
 FROM contracts
 WHERE 
 	EXTRACT(YEAR FROM  issue_date_timestamp) = 2024  
@@ -52,7 +52,7 @@ WHERE
 */
 
 SELECT 
-  	status,
+    status,
     COUNT(client_id)  AS count_clients,
     SUM(loan_amount) AS total_amount
 FROM 
@@ -63,7 +63,7 @@ GROUP BY status;
     6. Написать SQL запрос, который выведет все поля отчета 1 и отчета 2
 */
 SELECT 
-   	(CASE 
+    (CASE 
     	WHEN con.num_contract IS NULL THEN cr.num_contract::INT
         ELSE con.num_contract 
     END) AS num_contract,
@@ -83,8 +83,8 @@ SELECT
     con.status,
     con.date_status,
     con.sum_last_pay,
-  	cr.debt_balance,
-  	cr.interest_due,
+    cr.debt_balance,
+    cr.interest_due,
     cr.days_overdue
    FROM contracts con
    FULL JOIN credits cr on con.num_contract = cr.num_contract::INT;
